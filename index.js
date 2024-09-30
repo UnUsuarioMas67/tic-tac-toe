@@ -33,6 +33,7 @@ const GameBoard = (function (player1, player2) {
     isPlayer1Turn = true;
     winner = null;
     console.log("\nGAME START");
+    console.log("Next Player: " + getNextPlayer().name);
   };
 
   const printBoard = function () {
@@ -78,9 +79,11 @@ const GameBoard = (function (player1, player2) {
     if (isWinner(currentPlayer)) {
       winner = currentPlayer;
       console.log(`${currentPlayer.name} is the winner!`);
+      return;
     }
 
     isPlayer1Turn = !isPlayer1Turn;
+    console.log("Next Player: " + getNextPlayer().name);
   };
 
   const isWinner = function (player) {
