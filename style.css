@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "Josefin Sans";
+  src: url(fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf);
+}
+
+:root {
+  --gradient-background: linear-gradient(#38bdf8, #2563eb);
+  --color-primary: #2563EB;
+  --color-text-light: #F0F9FF;
+  --color-text-dak: #172554;
+
+  --color-player1: #DC2626;
+  --color-player2: #F59E0B;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans";
+}
+
+.player1 {
+  color: var(--color-player1);
+  fill: var(--color-player1);
+}
+
+.player2 {
+  color: var(--color-player2);
+  fill: var(--color-player2);
+}
+
+svg {
+  --size: 32px;
+  width: var(--size);
+  width: var(--size);
+}
+
+#gameboard svg {
+  max-width: 112px;
+  width: 100%;
+}
+
+.line {
+  width: 4px;
+  height: 11rem;
+  color: var(--color-text-light);
+}
