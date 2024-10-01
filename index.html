@@ -7,6 +7,131 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <main>
+    <p class="current-turn">
+      It's <span class="player1">Player</span>'s Turn (<span class="player1">X</span>)
+    </p>
+
+    <div id="gameboard">
+      <div class="square" data-row="0" data-col="0">
+        <svg class="player2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <title>circle-outline</title>
+          <path
+            d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+        </svg>
+      </div>
+      <div class="square" data-row="0" data-col="1"></div>
+      <div class="square" data-row="0" data-col="2">
+        <svg class="player1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <title>close</title>
+          <path
+            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+        </svg>
+      </div>
+      <div class="square" data-row="1" data-col="0"></div>
+      <div class="square" data-row="1" data-col="1">
+        <svg class="player1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
+        <title>close</title>
+        <path
+          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+        </svg>
+      </div>
+      <div class="square" data-row="1" data-col="2"></div>
+      <div class="square" data-row="2" data-col="0">
+        <svg class="player2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
+        <title>circle-outline</title>
+        <path
+          d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+        </svg>
+      </div>
+      <div class="square" data-row="2" data-col="1"></div>
+      <div class="square" data-row="2" data-col="2"></div>
+    </div>
+
+    <div id="scoreboard">
+      <div id="player1-score" class="player-score">
+        <div class="player-name-display">
+          <p class="player-name player1">Player 1</p>
+          <button class="edit-btn" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>pencil</title>
+              <path
+                d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="player-name-edit">
+          <input type="text" class="player-name-input player1">
+          <button class="close-btn" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
+            <title>close</title>
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+            </svg>
+          </button>
+        </div>
+        <p class="score-value">0</p>
+      </div>
+
+      <div class="line"></div>
+
+      <div id="player2-score" class="player-score">
+        <div class="player-name-display">
+          <p class="player-name player2">Player 2</p>
+          <button class="edit-btn" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>pencil</title>
+              <path
+                d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="player-name-edit">
+          <input type="text" class="player-name-input player2">
+          <button class="close-btn" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
+            <title>close</title>
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+            </svg>
+          </button>
+        </div>
+        <p class="score-value">0</p>
+      </div>
+    </div>
+
+    <dialog>
+      <div class="container">
+        <p><span class="player1">Player 1</span> Wins</p>
+
+        <div id="dialog-scoreboard">
+          <div id="player1-score" class="player-score">
+            <p class="score-value">0</p>
+            <p class="player-name player1">Player 1</p>
+          </div>
+
+          <div class="line"></div>
+
+          <div id="player2-score" class="player-score">
+            <p class="score-value">0</p>
+            <p class="player-name player2">Player 2</p>
+          </div>
+        </div>
+
+        <button class="restart-btn">
+          Restart
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <title>restart</title>
+            <path
+              d="M12,4C14.1,4 16.1,4.8 17.6,6.3C20.7,9.4 20.7,14.5 17.6,17.6C15.8,19.5 13.3,20.2 10.9,19.9L11.4,17.9C13.1,18.1 14.9,17.5 16.2,16.2C18.5,13.9 18.5,10.1 16.2,7.7C15.1,6.6 13.5,6 12,6V10.6L7,5.6L12,0.6V4M6.3,17.6C3.7,15 3.3,11 5.1,7.9L6.6,9.4C5.5,11.6 5.9,14.4 7.8,16.2C8.3,16.7 8.9,17.1 9.6,17.4L9,19.4C8,19 7.1,18.4 6.3,17.6Z" />
+          </svg>
+        </button>
+      </div>
+    </dialog>
+  </main>
+
   <script src="index.js"></script>
 </body>
 </html>
