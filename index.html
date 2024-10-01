@@ -9,11 +9,18 @@
 <body>
   <main>
     <p class="current-turn">
-      It's <span class="player1">Player</span>'s Turn (<span class="player1">X</span>)
+      It's <span class="player1">Player</span>'s Turn
+      <span class="player-sign">
+        (<svg class="player1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <title>close</title>
+          <path
+            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+        </svg>)
+      </span>
     </p>
 
     <div id="gameboard">
-      <div class="square" data-row="0" data-col="0">
+      <div class="square played" data-row="0" data-col="0">
         <svg class="player2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>circle-outline</title>
           <path
@@ -21,7 +28,7 @@
         </svg>
       </div>
       <div class="square" data-row="0" data-col="1"></div>
-      <div class="square" data-row="0" data-col="2">
+      <div class="square played" data-row="0" data-col="2">
         <svg class="player1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>close</title>
           <path
@@ -29,7 +36,7 @@
         </svg>
       </div>
       <div class="square" data-row="1" data-col="0"></div>
-      <div class="square" data-row="1" data-col="1">
+      <div class="square played" data-row="1" data-col="1">
         <svg class="player1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>close</title>
           <path
@@ -37,7 +44,7 @@
         </svg>
       </div>
       <div class="square" data-row="1" data-col="2"></div>
-      <div class="square" data-row="2" data-col="0">
+      <div class="square played" data-row="2" data-col="0">
         <svg class="player2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>circle-outline</title>
           <path
@@ -61,7 +68,7 @@
           </button>
         </div>
 
-        <div class="player-name-edit">
+        <div class="player-name-edit hide">
           <input type="text" class="player-name-input player1">
           <button class="close-btn" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -88,13 +95,13 @@
           </button>
         </div>
 
-        <div class="player-name-edit">
+        <div class="player-name-edit hide">
           <input type="text" class="player-name-input player2">
           <button class="close-btn" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>close</title>
               <path
-                d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
             </svg>
           </button>
         </div>
