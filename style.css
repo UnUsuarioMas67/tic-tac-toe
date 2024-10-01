@@ -6,11 +6,14 @@
 :root {
   --gradient-background: linear-gradient(#38bdf8, #2563eb);
   --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
   --color-text-light: #f0f9ff;
-  --color-text-dak: #172554;
+  --color-text-dark: #172554;
 
   --color-player1: #dc2626;
   --color-player2: #f59e0b;
+
+  --color-dialog-bg: #bfdbfe;
 
   --board-square-size: 112px;
 }
@@ -96,7 +99,8 @@ main {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-#scoreboard {
+#scoreboard,
+#dialog-scoreboard {
   display: grid;
   grid-template-columns: 1fr 4px 1fr;
   width: min(100vw, 45rem);
@@ -174,4 +178,81 @@ main {
   font-size: 4rem;
   text-align: center;
   font-weight: bold;
+}
+
+#end-game-dialog {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  background-color: transparent;
+  padding: 1rem;
+
+  width: 100%;
+  max-width: 500px;
+}
+
+#end-game-dialog .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+
+  border-radius: 30px;
+  padding: 3rem 2rem;
+
+  background-color: var(--color-dialog-bg);
+  text-align: center;
+}
+
+#end-game-dialog p:not(.player1, .player2) {
+  color: var(--color-text-dark);
+}
+
+#end-game-dialog .line {
+  background-color: var(--color-text-dark);
+}
+
+#end-game-dialog .container > p {
+  font-size: 2rem;
+}
+
+#dialog-scoreboard {
+  width: 100%;
+}
+
+#dialog-scoreboard .player-score {
+  gap: 0;
+}
+
+#dialog-scoreboard .player-score .score-value {
+  font-size: 6rem;
+}
+
+#dialog-scoreboard .player-score .player-name {
+  font-size: 1.25rem;
+}
+
+.restart-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  width: fit-content;
+
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 20px;
+
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  font-size: 1.25rem;
+}
+
+.restart-btn svg {
+  fill: var(--color-text-light);
+}
+
+.restart-btn:hover {
+  background-color: var(--color-primary-hover);
 }
