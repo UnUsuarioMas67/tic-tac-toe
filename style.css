@@ -80,7 +80,9 @@ main {
 
 #gameboard {
   display: grid;
-  grid-template-columns: repeat(3, var(--board-square-size));
+  grid-template:
+    repeat(3, var(--board-square-size))
+    / repeat(3, var(--board-square-size));
   gap: 8px;
   width: fit-content;
 }
