@@ -1,7 +1,11 @@
 const createPlayer = function (name, mark) {
   const getMark = () => mark;
 
-  return { name, getMark };
+  let score = 0;
+  const addScore = () => ++score;
+  const resetScore = () => (score = 0);
+
+  return { name, getMark, addScore, resetScore };
 };
 
 const GameBoard = (function () {
