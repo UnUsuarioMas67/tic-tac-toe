@@ -198,7 +198,7 @@ const GameBoard = (function () {
   return { start, printBoard, getPlayers, getGameState, playTurn };
 })();
 
-const DisplayManager = (function (doc) {
+const DisplayController = (function (doc) {
   const xIconSource = "assets/icons/player-X.svg";
   const oIconSource = "assets/icons/player-O.svg";
   const boardElem = doc.querySelector("#gameboard");
