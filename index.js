@@ -7,7 +7,7 @@ const createPlayer = function (name, mark) {
 const GameBoard = (function () {
   const playerX = createPlayer("Player 1", "X");
   const playerO = createPlayer("Player 2", "O");
-  
+
   let board = [];
   let isXTurn = true;
   let winner = null;
@@ -69,7 +69,7 @@ const GameBoard = (function () {
       return;
     }
 
-    const currentPlayer = isXTurn ? playerX : playerO;
+    const currentPlayer = getNextPlayer();
 
     board[row][col] = currentPlayer.getMark();
     console.log(`${currentPlayer.name} played at position [${row}, ${col}]`);
