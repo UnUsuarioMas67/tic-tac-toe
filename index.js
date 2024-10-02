@@ -1,9 +1,10 @@
 const createPlayer = function (name) {
   let score = 0;
   const addScore = () => ++score;
+  const getScore = () => score;
   const resetScore = () => (score = 0);
 
-  return { name, addScore, resetScore };
+  return { name, addScore, resetScore, getScore };
 };
 
 const GameBoard = (function () {
