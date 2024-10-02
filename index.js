@@ -198,6 +198,7 @@ const DisplayManager = (function (doc) {
   const oIconSource = "assets/icons/player-O.svg";
   const boardElem = doc.querySelector("#gameboard");
   const squares = boardElem.querySelectorAll(".square");
+  const currentTurn = doc.querySelector(".current-turn");
 
   const renderBoard = function (board) {
     squares.forEach((square) => {
@@ -222,5 +223,25 @@ const DisplayManager = (function (doc) {
     });
   };
 
-  return { renderBoard };
+  const renderCurrentTurn = function (player, isPlayerX) {
+    const playerName = currentTurn.querySelector(".current-player-name");
+    const playerMark = currentTurn.querySelector(".player-mark");
+
+    playerName.textContent = player.name;
+    playerName.classList.add(isPlayerX ? "player1" : "player2");
+    playerName.classList.remove(!isPlayerX ? "player1" : "player2");
+
+    playerMark.textContent = "";
+
+    const a = doc.createTextNode("(");
+    const b = doc.createTextNode(")");
+    const mark = doc.createElement("img");
+    mark.src = isPlayerX ? xIconSource : oIconSource;
+
+    playerMark.appendChild(a);
+    playerMark.appendChild(mark);
+    playerMark.appendChild(b);
+  };
+
+  return { renderBoard, renderCurrentTurn };
 })(document);
