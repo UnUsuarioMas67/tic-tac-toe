@@ -72,7 +72,7 @@ main {
   color: var(--color-text-light);
 }
 
-.current-turn .player-sign {
+.current-turn .player-mark {
   display: inline-flex;
   align-items: center;
 }
