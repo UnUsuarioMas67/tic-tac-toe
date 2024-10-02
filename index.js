@@ -76,12 +76,24 @@ const GameBoard = (function () {
 
     printBoard();
 
+    // check if the player has won after this turn
     const winningSquares = calculateVictory(currentPlayer);
 
     if (winningSquares) {
       winner = currentPlayer;
       console.log(`${currentPlayer.name} is the winner!`);
       console.log(winningSquares);
+      return;
+    }
+
+    // if there is no winner and all squares are filled
+    // the game ends as a draw
+    if (
+      board.every((row) => {
+        return row.every((col) => col !== null);
+      })
+    ) {
+      console.log("It's a Draw");
       return;
     }
 
@@ -139,9 +151,9 @@ const GameBoard = (function () {
       board[2][0] == player.getMark()
     ) {
       return [
-        {row: 0, col: 2},
-        {row: 1, col: 1},
-        {row: 2, col: 0},
+        { row: 0, col: 2 },
+        { row: 1, col: 1 },
+        { row: 2, col: 0 },
       ];
     }
 
