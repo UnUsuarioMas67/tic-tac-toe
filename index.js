@@ -217,6 +217,7 @@ const DisplayManager = (function (doc) {
         square.classList.add("played");
         const mark = doc.createElement("img");
         mark.src = s == "X" ? xIconSource : oIconSource;
+        square.appendChild(mark);
       }
     });
   };
