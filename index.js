@@ -245,8 +245,24 @@ const DisplayController = (function () {
     playerMark.appendChild(b);
   };
 
-  return { renderBoard, renderCurrentTurn };
+  const renderPlayersScore = function (scoreboardNode, players) {
+    const playerXScore = scoreboardNode.querySelector("#player1-score");
+    const playerOScore = scoreboardNode.querySelector("#player2-score");
+
+    playerXScore.querySelector(".player-name").textContent =
+      players.playerX.name;
+    playerXScore.querySelector(".score-value").textContent =
+      players.playerX.getScore();
+
+    playerOScore.querySelector(".player-name").textContent =
+      players.playerO.name;
+    playerOScore.querySelector(".score-value").textContent =
+      players.playerO.getScore();
+  };
+
+  return { renderBoard, renderCurrentTurn, renderPlayersScore };
 })();
 
 const boardSquares = document.querySelectorAll("#gameboard .square");
 const currentTurn = document.querySelector(".current-turn");
+const scoreboard = document.querySelector("#scoreboard");
