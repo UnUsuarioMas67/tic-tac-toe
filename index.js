@@ -12,9 +12,7 @@ const GameBoard = (function () {
   let isXTurn = true;
   let winner = null;
 
-  const createBoard = function () {
-    const newBoard = [];
-
+  const resetBoard = function () {
     for (let row = 0; row < 3; row++) {
       const currRow = [];
 
@@ -22,14 +20,12 @@ const GameBoard = (function () {
         currRow.push(null);
       }
 
-      newBoard.push(currRow);
+      board.push(currRow);
     }
-
-    return newBoard;
   };
 
-  const startGame = function () {
-    board = createBoard();
+  const start = function () {
+    resetBoard();
     isXTurn = true;
     winner = null;
     console.log("\nGAME START");
@@ -120,5 +116,5 @@ const GameBoard = (function () {
     return false;
   };
 
-  return { startGame, printBoard, getGameState, playTurn };
+  return { start, printBoard, getGameState, playTurn };
 })();
