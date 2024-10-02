@@ -41,6 +41,10 @@ const GameBoard = (function () {
     board.forEach((row) => console.log(row));
   };
 
+  const getPlayers = function () {
+    return { playerX, playerO };
+  };
+
   const getNextPlayer = () => (isXTurn ? playerX : playerO);
 
   const getGameState = function () {
@@ -116,5 +120,5 @@ const GameBoard = (function () {
     return false;
   };
 
-  return { start, printBoard, getGameState, playTurn };
+  return { start, printBoard, getPlayers, getGameState, playTurn };
 })();
