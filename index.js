@@ -198,12 +198,12 @@ const GameBoard = (function () {
   return { start, printBoard, getPlayers, getGameState, playTurn };
 })();
 
-const DisplayController = (function (doc) {
+const DisplayController = (function () {
   const xIconSource = "assets/icons/player-X.svg";
   const oIconSource = "assets/icons/player-O.svg";
-  const boardElem = doc.querySelector("#gameboard");
+  const boardElem = document.querySelector("#gameboard");
   const squares = boardElem.querySelectorAll(".square");
-  const currentTurn = doc.querySelector(".current-turn");
+  const currentTurn = document.querySelector(".current-turn");
 
   const renderBoard = function (board) {
     squares.forEach((square) => {
@@ -221,7 +221,7 @@ const DisplayController = (function (doc) {
 
       if (s !== null) {
         square.classList.add("played");
-        const mark = doc.createElement("img");
+        const mark = document.createElement("img");
         mark.src = s == "X" ? xIconSource : oIconSource;
         square.appendChild(mark);
       }
@@ -238,9 +238,9 @@ const DisplayController = (function (doc) {
 
     playerMark.textContent = "";
 
-    const a = doc.createTextNode("(");
-    const b = doc.createTextNode(")");
-    const mark = doc.createElement("img");
+    const a = document.createTextNode("(");
+    const b = document.createTextNode(")");
+    const mark = document.createElement("img");
     mark.src = isPlayerX ? xIconSource : oIconSource;
 
     playerMark.appendChild(a);
@@ -249,4 +249,4 @@ const DisplayController = (function (doc) {
   };
 
   return { renderBoard, renderCurrentTurn };
-})(document);
+})();
