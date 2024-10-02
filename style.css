@@ -77,7 +77,8 @@ main {
   align-items: center;
 }
 
-.current-turn svg {
+.current-turn svg,
+.current-turn img {
   width: 3rem;
 }
 
