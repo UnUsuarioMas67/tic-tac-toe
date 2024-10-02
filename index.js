@@ -192,3 +192,34 @@ const GameBoard = (function () {
 
   return { start, printBoard, getPlayers, getGameState, playTurn };
 })();
+
+const DisplayManager = (function (doc) {
+  const xIconSource = "assets/icons/player-X.svg";
+  const oIconSource = "assets/icons/player-O.svg";
+  const boardElem = doc.querySelector("#gameboard");
+  const squares = boardElem.querySelectorAll(".square");
+
+  const renderBoard = function (board) {
+    squares.forEach((square) => {
+      if (
+        board[square.dataset.row] === undefined ||
+        board[square.dataset.row][square.dataset.col] === undefined
+      ) {
+        return;
+      }
+
+      square.textContent = "";
+      square.classList.remove("played");
+
+      const s = board[square.dataset.row][square.dataset.col];
+
+      if (s !== null) {
+        square.classList.add("played");
+        const mark = doc.createElement("img");
+        mark.src = s == "X" ? xIconSource : oIconSource;
+      }
+    });
+  };
+
+  return { renderBoard };
+})(document);
