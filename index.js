@@ -76,9 +76,12 @@ const GameBoard = (function () {
 
     printBoard();
 
-    if (isWinner(currentPlayer)) {
+    const winningSquares = calculateVictory(currentPlayer);
+
+    if (winningSquares) {
       winner = currentPlayer;
       console.log(`${currentPlayer.name} is the winner!`);
+      console.log(winningSquares);
       return;
     }
 
@@ -86,10 +89,19 @@ const GameBoard = (function () {
     console.log("Next Player: " + getNextPlayer().name);
   };
 
-  const isWinner = function (player) {
+  // Takes a player as parameters and checks if said player has 3 of their marks in a row
+  // If so it will return the coordinates of each square in the row
+  // else returns null
+  const calculateVictory = function (player) {
     // check rows
-    if (board.some((row) => row.every((value) => value === player.getMark()))) {
-      return true;
+    for (let row = 0; row < 3; row++) {
+      if (board[row].every((col) => col === player.getMark())) {
+        return [
+          { row, col: 0 },
+          { row, col: 1 },
+          { row, col: 2 },
+        ];
+      }
     }
 
     // check columns
@@ -99,25 +111,41 @@ const GameBoard = (function () {
         board[1][col] == player.getMark() &&
         board[2][col] == player.getMark()
       ) {
-        return true;
+        return [
+          { row: 0, col },
+          { row: 1, col },
+          { row: 2, col },
+        ];
       }
     }
 
     // check diagonal
+    // top left to bottom right
     if (
-      // top left to bottom right
-      (board[0][0] == player.getMark() &&
-        board[1][1] == player.getMark() &&
-        board[2][2] == player.getMark()) ||
-      // top right to bottom left
-      (board[0][2] == player.getMark() &&
-        board[1][1] == player.getMark() &&
-        board[2][0] == player.getMark())
+      board[0][0] == player.getMark() &&
+      board[1][1] == player.getMark() &&
+      board[2][2] == player.getMark()
     ) {
-      return true;
+      return [
+        { row: 0, col: 0 },
+        { row: 1, col: 1 },
+        { row: 2, col: 2 },
+      ];
+    }
+    // top right to bottom left
+    if (
+      board[0][2] == player.getMark() &&
+      board[1][1] == player.getMark() &&
+      board[2][0] == player.getMark()
+    ) {
+      return [
+        {row: 0, col: 2},
+        {row: 1, col: 1},
+        {row: 2, col: 0},
+      ];
     }
 
-    return false;
+    return null;
   };
 
   return { start, printBoard, getPlayers, getGameState, playTurn };
