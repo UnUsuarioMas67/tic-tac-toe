@@ -201,12 +201,9 @@ const GameBoard = (function () {
 const DisplayController = (function () {
   const xIconSource = "assets/icons/player-X.svg";
   const oIconSource = "assets/icons/player-O.svg";
-  const boardElem = document.querySelector("#gameboard");
-  const squares = boardElem.querySelectorAll(".square");
-  const currentTurn = document.querySelector(".current-turn");
 
-  const renderBoard = function (board) {
-    squares.forEach((square) => {
+  const renderBoard = function (squareNodes, board) {
+    squareNodes.forEach((square) => {
       if (
         board[square.dataset.row] === undefined ||
         board[square.dataset.row][square.dataset.col] === undefined
@@ -228,9 +225,9 @@ const DisplayController = (function () {
     });
   };
 
-  const renderCurrentTurn = function (player, isPlayerX) {
-    const playerName = currentTurn.querySelector(".current-player-name");
-    const playerMark = currentTurn.querySelector(".player-mark");
+  const renderCurrentTurn = function (currentTurnNode, player, isPlayerX) {
+    const playerName = currentTurnNode.querySelector(".current-player-name");
+    const playerMark = currentTurnNode.querySelector(".player-mark");
 
     playerName.textContent = player.name;
     playerName.classList.add(isPlayerX ? "player1" : "player2");
@@ -250,3 +247,6 @@ const DisplayController = (function () {
 
   return { renderBoard, renderCurrentTurn };
 })();
+
+const boardSquares = document.querySelectorAll("#gameboard .square");
+const currentTurn = document.querySelector(".current-turn");
