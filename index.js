@@ -12,6 +12,23 @@ const GameBoard = (function () {
   let isXTurn = true;
   let winner = null;
 
+  /* 
+    This variable exists to tell the UI which squares 
+    it should highlight when a player wins the game
+  */
+  let winningSquares = null;
+
+  /* 
+    This variable exists mostly to tell the UI to
+    if there is a draw or not at the end of the game 
+  */
+  let winStatus = "none";
+  /*
+    "none" - The winner has not yet been determined 
+    "normal" - There is a winner
+    "draw" - What the name says
+  */
+
   const resetBoard = function () {
     for (let row = 0; row < 3; row++) {
       const currRow = [];
@@ -28,6 +45,9 @@ const GameBoard = (function () {
     resetBoard();
     isXTurn = true;
     winner = null;
+    winningSquares = null;
+    winStatus = "none";
+
     console.log("\nGAME START");
     console.log("Next Player: " + getNextPlayer().name);
   };
@@ -48,7 +68,13 @@ const GameBoard = (function () {
   const getNextPlayer = () => (isXTurn ? playerX : playerO);
 
   const getGameState = function () {
-    return { board, nextPlayer: getNextPlayer(), winner };
+    return {
+      board,
+      nextPlayer: getNextPlayer(),
+      winner,
+      winningSquares,
+      winStatus,
+    };
   };
 
   const playTurn = function (row, col) {
@@ -77,10 +103,12 @@ const GameBoard = (function () {
     printBoard();
 
     // check if the player has won after this turn
-    const winningSquares = calculateVictory(currentPlayer);
+    winningSquares = calculateVictory(currentPlayer);
 
     if (winningSquares) {
       winner = currentPlayer;
+      winStatus = "normal"
+
       console.log(`${currentPlayer.name} is the winner!`);
       console.log(winningSquares);
       return;
@@ -93,6 +121,8 @@ const GameBoard = (function () {
         return row.every((col) => col !== null);
       })
     ) {
+      winStatus = "draw"
+
       console.log("It's a Draw");
       return;
     }
