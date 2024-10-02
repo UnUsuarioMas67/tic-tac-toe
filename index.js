@@ -4,12 +4,12 @@ const createPlayer = function (name, mark) {
   return { name, getMark };
 };
 
-const p1 = createPlayer("Player 1", "X");
-const p2 = createPlayer("Player 2", "O");
-
-const GameBoard = (function (player1, player2) {
+const GameBoard = (function () {
+  const playerX = createPlayer("Player 1", "X");
+  const playerO = createPlayer("Player 2", "O");
+  
   let board = [];
-  let isPlayer1Turn = true;
+  let isXTurn = true;
   let winner = null;
 
   const createBoard = function () {
@@ -30,7 +30,7 @@ const GameBoard = (function (player1, player2) {
 
   const startGame = function () {
     board = createBoard();
-    isPlayer1Turn = true;
+    isXTurn = true;
     winner = null;
     console.log("\nGAME START");
     console.log("Next Player: " + getNextPlayer().name);
@@ -45,7 +45,7 @@ const GameBoard = (function (player1, player2) {
     board.forEach((row) => console.log(row));
   };
 
-  const getNextPlayer = () => (isPlayer1Turn ? player1 : player2);
+  const getNextPlayer = () => (isXTurn ? playerX : playerO);
 
   const getGameState = function () {
     return { board, nextPlayer: getNextPlayer(), winner };
@@ -69,7 +69,7 @@ const GameBoard = (function (player1, player2) {
       return;
     }
 
-    const currentPlayer = isPlayer1Turn ? player1 : player2;
+    const currentPlayer = isXTurn ? playerX : playerO;
 
     board[row][col] = currentPlayer.getMark();
     console.log(`${currentPlayer.name} played at position [${row}, ${col}]`);
@@ -82,7 +82,7 @@ const GameBoard = (function (player1, player2) {
       return;
     }
 
-    isPlayer1Turn = !isPlayer1Turn;
+    isXTurn = !isXTurn;
     console.log("Next Player: " + getNextPlayer().name);
   };
 
@@ -121,4 +121,4 @@ const GameBoard = (function (player1, player2) {
   };
 
   return { startGame, printBoard, getGameState, playTurn };
-})(p1, p2);
+})();
