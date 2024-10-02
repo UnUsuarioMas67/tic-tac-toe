@@ -1,16 +1,14 @@
-const createPlayer = function (name, mark) {
-  const getMark = () => mark;
-
+const createPlayer = function (name) {
   let score = 0;
   const addScore = () => ++score;
   const resetScore = () => (score = 0);
 
-  return { name, getMark, addScore, resetScore };
+  return { name, addScore, resetScore };
 };
 
 const GameBoard = (function () {
-  const playerX = createPlayer("Player 1", "X");
-  const playerO = createPlayer("Player 2", "O");
+  const playerX = createPlayer("Player 1");
+  const playerO = createPlayer("Player 2");
 
   let board = [];
   let isXTurn = true;
@@ -101,13 +99,13 @@ const GameBoard = (function () {
 
     const currentPlayer = getNextPlayer();
 
-    board[row][col] = currentPlayer.getMark();
+    board[row][col] = isXTurn ? "X" : "O";
     console.log(`${currentPlayer.name} played at position [${row}, ${col}]`);
 
     printBoard();
 
     // check if the player has won after this turn
-    winningSquares = calculateVictory(currentPlayer);
+    winningSquares = calculateVictory();
 
     if (winningSquares) {
       winner = currentPlayer;
@@ -138,10 +136,12 @@ const GameBoard = (function () {
   // Takes a player as parameters and checks if said player has 3 of their marks in a row
   // If so it will return the coordinates of each square in the row
   // else returns null
-  const calculateVictory = function (player) {
+  const calculateVictory = function () {
+    const currentMark = isXTurn ? "X" : "O";
+
     // check rows
     for (let row = 0; row < 3; row++) {
-      if (board[row].every((col) => col === player.getMark())) {
+      if (board[row].every((col) => col === currentMark)) {
         return [
           { row, col: 0 },
           { row, col: 1 },
@@ -153,9 +153,9 @@ const GameBoard = (function () {
     // check columns
     for (let col = 0; col < 3; col++) {
       if (
-        board[0][col] == player.getMark() &&
-        board[1][col] == player.getMark() &&
-        board[2][col] == player.getMark()
+        board[0][col] == currentMark &&
+        board[1][col] == currentMark &&
+        board[2][col] == currentMark
       ) {
         return [
           { row: 0, col },
@@ -168,9 +168,9 @@ const GameBoard = (function () {
     // check diagonal
     // top left to bottom right
     if (
-      board[0][0] == player.getMark() &&
-      board[1][1] == player.getMark() &&
-      board[2][2] == player.getMark()
+      board[0][0] == currentMark &&
+      board[1][1] == currentMark &&
+      board[2][2] == currentMark
     ) {
       return [
         { row: 0, col: 0 },
@@ -180,9 +180,9 @@ const GameBoard = (function () {
     }
     // top right to bottom left
     if (
-      board[0][2] == player.getMark() &&
-      board[1][1] == player.getMark() &&
-      board[2][0] == player.getMark()
+      board[0][2] == currentMark &&
+      board[1][1] == currentMark &&
+      board[2][0] == currentMark
     ) {
       return [
         { row: 0, col: 2 },
