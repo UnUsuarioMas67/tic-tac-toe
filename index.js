@@ -72,13 +72,15 @@ const GameBoard = (function () {
 
   const getGameState = function () {
     return {
-      board,
       nextPlayer: getNextPlayer(),
+      isXTurn,
       winner,
       winningSquares,
       winStatus,
     };
   };
+
+  const getBoard = () => [...board];
 
   const playTurn = function (row, col) {
     if (board.length === 0) {
@@ -195,7 +197,7 @@ const GameBoard = (function () {
     return null;
   };
 
-  return { start, printBoard, getPlayers, getGameState, playTurn };
+  return { start, printBoard, getPlayers, getBoard, getGameState, playTurn };
 })();
 
 const DisplayController = (function () {
