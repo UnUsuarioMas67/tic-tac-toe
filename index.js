@@ -266,9 +266,34 @@ const DisplayController = (function () {
 })();
 
 const Game = (function (gameBoard, displayController) {
-  const initialize = function (squareNodes, currentTurnNode, scoreboardNode) {};
+  let squareNodes;
+  let currentTurnNode;
+  let scoreboardNode;
+
+  const initialize = function (squares, currentTurn, scoreboard) {
+    squareNodes = squares;
+    currentTurnNode = currentTurn;
+    scoreboardNode = scoreboard;
+
+    gameBoard.start();
+    displayController.renderBoard(squareNodes, gameBoard.getBoard());
+
+    const gameState = gameBoard.getGameState();
+    displayController.renderCurrentTurn(
+      currentTurnNode,
+      gameState.nextPlayer,
+      gameState.isXTurn
+    );
+
+    const { playerX, playerO } = gameBoard.getPlayers();
+    displayController.renderPlayersScore(scoreboardNode, playerX, playerO);
+  };
+
+  return { initialize };
 })(GameBoard, DisplayController);
 
 const boardSquares = document.querySelectorAll("#gameboard .square");
 const currentTurn = document.querySelector(".current-turn");
 const scoreboard = document.querySelector("#scoreboard");
+
+Game.initialize(boardSquares, currentTurn, scoreboard);
