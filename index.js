@@ -283,6 +283,32 @@ const Game = (function (gameBoard, displayController) {
 
     const { playerX, playerO } = gameBoard.getPlayers();
     displayController.renderPlayersScore(scoreboardNode, playerX, playerO);
+
+    squareNodes.forEach((square) => {
+      square.addEventListener("click", () => {
+        handleSquareClick(square);
+      });
+    });
+  };
+
+  const handleSquareClick = function (square) {
+    const board = gameBoard.getBoard();
+
+    if (square.classList.contains("played")) {
+      return;
+    }
+
+    // update the square
+    gameBoard.playTurn(square.dataset.row, square.dataset.col);
+
+    displayController.renderBoard(squareNodes, board);
+
+    const gameState = gameBoard.getGameState();
+    displayController.renderCurrentTurn(
+      currentTurnNode,
+      gameState.nextPlayer,
+      gameState.isXTurn
+    );
   };
 
   return { initialize };
