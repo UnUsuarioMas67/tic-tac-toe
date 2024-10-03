@@ -251,15 +251,11 @@ const DisplayController = (function () {
     const playerXScore = scoreboardNode.querySelector("#player1-score");
     const playerOScore = scoreboardNode.querySelector("#player2-score");
 
-    playerXScore.querySelector(".player-name").textContent =
-      playerX.name;
-    playerXScore.querySelector(".score-value").textContent =
-      playerX.getScore();
+    playerXScore.querySelector(".player-name").textContent = playerX.name;
+    playerXScore.querySelector(".score-value").textContent = playerX.getScore();
 
-    playerOScore.querySelector(".player-name").textContent =
-      playerO.name;
-    playerOScore.querySelector(".score-value").textContent =
-      playerO.getScore();
+    playerOScore.querySelector(".player-name").textContent = playerO.name;
+    playerOScore.querySelector(".score-value").textContent = playerO.getScore();
   };
 
   return { renderBoard, renderCurrentTurn, renderPlayersScore };
