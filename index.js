@@ -263,6 +263,10 @@ const DisplayController = (function () {
   return { renderBoard, renderCurrentTurn, renderPlayersScore };
 })();
 
+const Game = (function (gameBoard, displayController) {
+  const initialize = function (squareNodes, currentTurnNode, scoreboardNode) {};
+})(GameBoard, DisplayController);
+
 const boardSquares = document.querySelectorAll("#gameboard .square");
 const currentTurn = document.querySelector(".current-turn");
 const scoreboard = document.querySelector("#scoreboard");
