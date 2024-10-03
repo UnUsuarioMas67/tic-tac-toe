@@ -113,6 +113,7 @@ const GameBoard = (function () {
     if (winningSquares) {
       winner = currentPlayer;
       winStatus = "normal";
+      currentPlayer.addScore();
 
       console.log(`${currentPlayer.name} is the winner!`);
       console.log(winningSquares);
