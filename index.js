@@ -247,19 +247,19 @@ const DisplayController = (function () {
     playerMark.appendChild(b);
   };
 
-  const renderPlayersScore = function (scoreboardNode, players) {
+  const renderPlayersScore = function (scoreboardNode, playerX, playerO) {
     const playerXScore = scoreboardNode.querySelector("#player1-score");
     const playerOScore = scoreboardNode.querySelector("#player2-score");
 
     playerXScore.querySelector(".player-name").textContent =
-      players.playerX.name;
+      playerX.name;
     playerXScore.querySelector(".score-value").textContent =
-      players.playerX.getScore();
+      playerX.getScore();
 
     playerOScore.querySelector(".player-name").textContent =
-      players.playerO.name;
+      playerO.name;
     playerOScore.querySelector(".score-value").textContent =
-      players.playerO.getScore();
+      playerO.getScore();
   };
 
   return { renderBoard, renderCurrentTurn, renderPlayersScore };
