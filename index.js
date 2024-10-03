@@ -248,8 +248,8 @@ const DisplayController = (function () {
   };
 
   const renderPlayersScore = function (scoreboardNode, playerX, playerO) {
-    const playerXScore = scoreboardNode.querySelector("#player1-score");
-    const playerOScore = scoreboardNode.querySelector("#player2-score");
+    const playerXScore = scoreboardNode.querySelector(".player1-score");
+    const playerOScore = scoreboardNode.querySelector(".player2-score");
 
     playerXScore.querySelector(".player-name").textContent = playerX.name;
     playerXScore.querySelector(".score-value").textContent = playerX.getScore();
