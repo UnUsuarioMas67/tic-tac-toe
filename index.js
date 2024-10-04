@@ -297,15 +297,7 @@ const Game = (function (gameBoard, displayController) {
     scoreboardNode = scoreboard;
     dialogNode = dialog;
 
-    gameBoard.start();
-    displayController.renderBoard(squareNodes, gameBoard.getBoard());
-
-    const gameState = gameBoard.getGameState();
-    displayController.renderCurrentTurn(
-      currentTurnNode,
-      gameState.nextPlayer,
-      gameState.isXTurn
-    );
+    start();
 
     const { playerX, playerO } = gameBoard.getPlayers();
     displayController.renderPlayersScore(scoreboardNode, playerX, playerO);
@@ -316,6 +308,18 @@ const Game = (function (gameBoard, displayController) {
       });
     });
   };
+
+  const start = function () {
+    gameBoard.start();
+    displayController.renderBoard(squareNodes, gameBoard.getBoard());
+
+    const gameState = gameBoard.getGameState();
+    displayController.renderCurrentTurn(
+      currentTurnNode,
+      gameState.nextPlayer,
+      gameState.isXTurn
+    );
+  }
 
   const handleSquareClick = function (square) {
     const board = gameBoard.getBoard();
