@@ -265,15 +265,24 @@ const DisplayController = (function () {
       return;
     }
 
+    winnerNode.textContent = "";
+
     const playerName = document.createElement("span");
-    playerName.classList.add(isPlayerX ? "player1" : "player2");
     playerName.textContent = winner.name;
+    playerName.classList.add(isPlayerX ? "player1" : "player2");
+
+    const wins = document.createTextNode(" Wins");
 
     winnerNode.appendChild(playerName);
-    winnerNode.textContent += " Wins";
+    winnerNode.appendChild(wins);
   };
 
-  return { renderBoard, renderCurrentTurn, renderPlayersScore, renderWinnerText };
+  return {
+    renderBoard,
+    renderCurrentTurn,
+    renderPlayersScore,
+    renderWinnerText,
+  };
 })();
 
 const Game = (function (gameBoard, displayController) {
