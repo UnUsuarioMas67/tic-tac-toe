@@ -259,7 +259,21 @@ const DisplayController = (function () {
     playerOScore.querySelector(".score-value").textContent = playerO.getScore();
   };
 
-  return { renderBoard, renderCurrentTurn, renderPlayersScore };
+  const renderWinnerText = function (winnerNode, winner, isPlayerX) {
+    if (!winner) {
+      winnerNode.textContent = "It's a Draw";
+      return;
+    }
+
+    const playerName = document.createElement("span");
+    playerName.classList.add(isPlayerX ? "player1" : "player2");
+    playerName.textContent = winner.name;
+
+    winnerNode.appendChild(playerName);
+    winnerNode.textContent += " Wins";
+  };
+
+  return { renderBoard, renderCurrentTurn, renderPlayersScore, renderWinnerText };
 })();
 
 const Game = (function (gameBoard, displayController) {
