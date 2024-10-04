@@ -33,6 +33,8 @@ const GameBoard = (function () {
   */
 
   const resetBoard = function () {
+    board = [];
+    
     for (let row = 0; row < 3; row++) {
       const currRow = [];
 
