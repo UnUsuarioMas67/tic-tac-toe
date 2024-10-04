@@ -309,6 +309,11 @@ const Game = (function (gameBoard, displayController) {
         handleSquareClick(square);
       });
     });
+
+    dialogNode.addEventListener("close", hideDialog);
+    
+    const restartBtn = dialogNode.querySelector(".restart-btn");
+    restartBtn.addEventListener("click", hideDialog);
   };
 
   const start = function () {
@@ -321,7 +326,7 @@ const Game = (function (gameBoard, displayController) {
       gameState.nextPlayer,
       gameState.isXTurn
     );
-  }
+  };
 
   const handleSquareClick = function (square) {
     const board = gameBoard.getBoard();
@@ -356,12 +361,21 @@ const Game = (function (gameBoard, displayController) {
 
     const gameState = gameBoard.getGameState();
 
-    displayController.renderWinnerText(winner, gameState.winner, gameState.isXTurn);
+    displayController.renderWinnerText(
+      winner,
+      gameState.winner,
+      gameState.isXTurn
+    );
 
     const { playerX, playerO } = gameBoard.getPlayers();
     displayController.renderPlayersScore(scoreboard, playerX, playerO);
 
     dialogNode.showModal();
+  };
+
+  const hideDialog = function () {
+    dialogNode.close();
+    start();
   };
 
   return { initialize };
