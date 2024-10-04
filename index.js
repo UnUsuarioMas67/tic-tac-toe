@@ -280,11 +280,13 @@ const Game = (function (gameBoard, displayController) {
   let squareNodes;
   let currentTurnNode;
   let scoreboardNode;
+  let dialogNode;
 
-  const initialize = function (squares, currentTurn, scoreboard) {
+  const initialize = function (squares, currentTurn, scoreboard, dialog) {
     squareNodes = squares;
     currentTurnNode = currentTurn;
     scoreboardNode = scoreboard;
+    dialogNode = dialog;
 
     gameBoard.start();
     displayController.renderBoard(squareNodes, gameBoard.getBoard());
@@ -324,6 +326,27 @@ const Game = (function (gameBoard, displayController) {
       gameState.nextPlayer,
       gameState.isXTurn
     );
+
+    const { playerX, playerO } = gameBoard.getPlayers();
+    displayController.renderPlayersScore(scoreboardNode, playerX, playerO);
+
+    if (gameState.winStatus === "normal" || gameState.winStatus === "draw") {
+      showDialog();
+    }
+  };
+
+  const showDialog = function () {
+    const winner = dialogNode.querySelector(".winner");
+    const scoreboard = dialogNode.querySelector("#dialog-scoreboard");
+
+    const gameState = gameBoard.getGameState();
+
+    displayController.renderWinnerText(winner, gameState.winner, gameState.isXTurn);
+
+    const { playerX, playerO } = gameBoard.getPlayers();
+    displayController.renderPlayersScore(scoreboard, playerX, playerO);
+
+    dialogNode.showModal();
   };
 
   return { initialize };
@@ -332,5 +355,6 @@ const Game = (function (gameBoard, displayController) {
 const boardSquares = document.querySelectorAll("#gameboard .square");
 const currentTurn = document.querySelector(".current-turn");
 const scoreboard = document.querySelector("#scoreboard");
+const endDialog = document.querySelector("#end-game-dialog");
 
-Game.initialize(boardSquares, currentTurn, scoreboard);
+Game.initialize(boardSquares, currentTurn, scoreboard, endDialog);
