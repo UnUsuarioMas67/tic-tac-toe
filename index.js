@@ -1,15 +1,17 @@
-const createPlayer = function (name) {
+const createPlayer = function (name, id) {
+  const getId = () => id;
+
   let score = 0;
   const addScore = () => ++score;
   const getScore = () => score;
   const resetScore = () => (score = 0);
 
-  return { name, addScore, resetScore, getScore };
+  return { name, addScore, resetScore, getScore, getId };
 };
 
 const GameBoard = (function () {
-  const playerX = createPlayer("Player 1");
-  const playerO = createPlayer("Player 2");
+  const playerX = createPlayer("Player 1", 1);
+  const playerO = createPlayer("Player 2", 2);
 
   let board = [];
   let isXTurn = true;
@@ -254,9 +256,11 @@ const DisplayController = (function () {
     const playerXScore = scoreboardNode.querySelector(".player1-score");
     const playerOScore = scoreboardNode.querySelector(".player2-score");
 
+    playerXScore.dataset.playerId = playerX.getId();
     playerXScore.querySelector(".player-name").textContent = playerX.name;
     playerXScore.querySelector(".score-value").textContent = playerX.getScore();
 
+    playerOScore.dataset.playerId = playerO.getId();
     playerOScore.querySelector(".player-name").textContent = playerO.name;
     playerOScore.querySelector(".score-value").textContent = playerO.getScore();
   };
