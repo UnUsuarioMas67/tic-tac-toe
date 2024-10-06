@@ -1,2 +1,5 @@
 # tic-tac-toe
-Tic-Tac-Toe game made using HTML, CSS and JavaScript
+
+![](preview.png)
+
+Tic-Tac-Toe game made using HTML, CSS and JavaScript.
