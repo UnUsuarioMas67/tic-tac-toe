@@ -424,6 +424,10 @@ const NameChangeController = (function (gameBoard, displayController) {
   };
 
   const updatePlayerName = function (newName, scoreContainer) {
+    if (newName.trim() === "") {
+      return;
+    }
+    
     const { playerX, playerO } = gameBoard.getPlayers();
     const player = scoreContainer.classList.contains("player1-score")
       ? playerX
