@@ -380,7 +380,69 @@ const Game = (function (gameBoard, displayController) {
   return { initialize };
 })(GameBoard, DisplayController);
 
-const NameChangeController = (function (gameBoard, displayController) {})(GameBoard, DisplayController);
+const NameChangeController = (function (gameBoard, displayController) {
+  let scoreboardNode;
+  let currentTurnNode;
+
+  const initialize = function (scoreboard, currentTurn) {
+    scoreboardNode = scoreboard;
+    currentTurnNode = currentTurn;
+
+    const editButtons = scoreboardNode.querySelectorAll(".edit-btn");
+    editButtons.forEach((btn) => {
+      btn.addEventListener("click", () => handleEditBtnClick(btn));
+    });
+
+    const inputElems = scoreboardNode.querySelectorAll(".player-name-input");
+    inputElems.forEach((input) => {
+      input.addEventListener("blur", () => handleNameInputBlur(input));
+    });
+  };
+
+  const handleEditBtnClick = function (btn) {
+    const parent = btn.closest(".player-score");
+    const nameDisplay = parent.querySelector(".player-name-display");
+    const name = nameDisplay.querySelector(".player-name");
+    const nameEdit = parent.querySelector(".player-name-edit");
+    const nameInput = nameEdit.querySelector(".player-name-input");
+
+    nameInput.value = name.textContent;
+    nameDisplay.classList.add("hide");
+    nameEdit.classList.remove("hide");
+    nameInput.focus();
+  };
+
+  const handleNameInputBlur = function (input) {
+    const parent = input.closest(".player-score");
+    const nameEdit = input.closest(".player-name-edit");
+    const nameDisplay = parent.querySelector(".player-name-display");
+    const name = nameDisplay.querySelector(".player-name");
+
+    updatePlayerName(input.value, parent);
+    nameDisplay.classList.remove("hide");
+    nameEdit.classList.add("hide");
+  };
+
+  const updatePlayerName = function (newName, scoreContainer) {
+    const { playerX, playerO } = gameBoard.getPlayers();
+    const player = scoreContainer.classList.contains("player1-score")
+      ? playerX
+      : playerO;
+    
+    player.name = newName;
+
+    displayController.renderPlayersScore(scoreboardNode, playerX, playerO);
+
+    const gameState = gameBoard.getGameState();
+    displayController.renderCurrentTurn(
+      currentTurnNode,
+      gameState.nextPlayer,
+      gameState.isXTurn
+    );
+  };
+
+  return { initialize };
+})(GameBoard, DisplayController);
 
 const boardSquares = document.querySelectorAll("#gameboard .square");
 const currentTurn = document.querySelector(".current-turn");
@@ -388,3 +450,4 @@ const scoreboard = document.querySelector("#scoreboard");
 const endDialog = document.querySelector("#end-game-dialog");
 
 Game.initialize(boardSquares, currentTurn, scoreboard, endDialog);
+NameChangeController.initialize(scoreboard, currentTurn);
