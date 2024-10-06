@@ -263,3 +263,7 @@ main {
 .restart-btn:hover {
   background-color: var(--color-primary-hover);
 }
+
+.restart-btn:focus {
+  outline: 2px solid var(--color-text-light);
+}
