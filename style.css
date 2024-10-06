@@ -140,6 +140,12 @@ main {
   text-align: center;
 }
 
+.player-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .player-name-edit {
   position: relative;
 }
