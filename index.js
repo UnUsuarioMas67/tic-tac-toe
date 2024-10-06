@@ -36,7 +36,7 @@ const GameBoard = (function () {
 
   const resetBoard = function () {
     board = [];
-    
+
     for (let row = 0; row < 3; row++) {
       const currRow = [];
 
@@ -259,7 +259,7 @@ const DisplayController = (function () {
     playerXScore.dataset.playerId = playerX.getId();
     playerXScore.querySelector(".player-name").textContent = playerX.name;
     playerXScore.querySelector(".score-value").textContent = playerX.getScore();
-
+    
     playerOScore.dataset.playerId = playerO.getId();
     playerOScore.querySelector(".player-name").textContent = playerO.name;
     playerOScore.querySelector(".score-value").textContent = playerO.getScore();
@@ -315,7 +315,7 @@ const Game = (function (gameBoard, displayController) {
     });
 
     dialogNode.addEventListener("close", hideDialog);
-    
+
     const restartBtn = dialogNode.querySelector(".restart-btn");
     restartBtn.addEventListener("click", hideDialog);
   };
@@ -384,6 +384,8 @@ const Game = (function (gameBoard, displayController) {
 
   return { initialize };
 })(GameBoard, DisplayController);
+
+const NameChangeController = (function (gameBoard, displayController) {})(GameBoard, DisplayController);
 
 const boardSquares = document.querySelectorAll("#gameboard .square");
 const currentTurn = document.querySelector(".current-turn");
